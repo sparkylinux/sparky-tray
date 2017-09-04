@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#  Sparky Repository Editor lets you edit repository lists
+#  Created by Paweł "pavroo" Pijanowski 2014/05/22
+#  Copyright 2014, 2015 under the GNU GPL2 License
+#  Last update 2015/02/28
+
+testroot="`whoami`"
+
+if [ "$testroot" != "root" ]; then
+    echo "Must be root"
+    exit 1
+fi
+
+if [ -f /opt/sparky/sparky-editor ]; then
+. /opt/sparky/sparky-editor
+else
+SPARKYEDITOR="gnome-text-editor"
+fi
+
+$SPARKYEDITOR /etc/apt/sources.list
+
+exit 1
+
+

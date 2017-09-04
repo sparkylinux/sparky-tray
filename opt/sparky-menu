@@ -1,0 +1,5 @@
+APTus! remsu sparky-aptus
+Synaptic package manager! remsu synaptic
+Edit main repository! remsu /opt/tray/sparky-tray-edit-main
+Edit custom repository! remsu /opt/tray/sparky-tray-edit
+Root terminal! remsu /opt/tray/sparky-tray-terminal

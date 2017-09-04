@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# This script has been copied from Puppy Linux forum http://www.murga-linux.com/puppy/viewtopic.php?t=81841&sid=0a080a55e4109ab26850550a31e4eaf8
+# The author of it is stu91
+# Adapted for SparkyLinux by pavroo <pavroo@onet.eu> 2013/Dec/03
+# Last update 2017/05/13
+
+## Application menu file ###############################################
+
+GET_MENU="$@"
+
+########################################################################
+
+function START_MENU () {
+
+## MENU items ##########################################################
+
+MENU_ITEMS="` cat "$GET_MENU" | tr '\n' '|' | sed '$s/.$//' `"
+
+## Defaults ############################################################
+
+TRAY_ICON="system-software-install"
+POPUP_TEXT="Package Management"
+PIPE_FIFO=$(mktemp -u /tmp/menutray.XXXXXXXX)
+
+## Action on left mouse click ###########################################
+#  function LEFT_CLICK () {
+#   exec 3<> $PIPE_FIFO
+#    echo "quit" >&3
+#    rm -f $PIPE_FIFO
+#}
+# 
+#  export -f LEFT_CLICK
+#  export PIPE_FIFO
+
+## 1 Create PIPE_FIFO file #############################################
+  mkfifo $PIPE_FIFO
+
+## 2 Attach a filedescriptor to this PIPE_FIFO #########################
+  exec 3<> $PIPE_FIFO
+ 
+## 3 Run yad and tell it to read its stdin from the file descriptor ####
+GUI=$(yad --notification --kill-parent --listen \
+--image="$TRAY_ICON" \
+--text="$POPUP_TEXT" \
+--command="bash -c LEFT_CLICK" <&3 ) &
+
+## 4 Write menu to file descriptor to generate MENU ####################
+ echo "menu:$MENU_ITEMS" >&3
+}
+
+## Check if menu file is provided ######################################
+ 
+  if [ -z "$GET_MENU" ]; then
+  echo "traymenu usage: $0 /opt/tray/sparky-menu" && exit
+  else
+  START_MENU
+  fi
