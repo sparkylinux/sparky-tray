@@ -2,14 +2,13 @@
 
 #  Sparky Repository Editor lets you edit repository lists
 #  Created by Paweł "pavroo" Pijanowski 2014/05/22
-#  Copyright 2014, 2015 under the GNU GPL2 License
-#  Last update 2016/12/29
+#  Copyright 2014-2018 under the GNU GPL2 License
+#  Last update 2018/03/16
 
 testroot="`whoami`"
-
 if [ "$testroot" != "root" ]; then
-    echo "Must be root"
-    exit 1
+	echo "Must be root... Exiting..."
+	exit 1
 fi
 
 DIALOGMENU="`which zenity`"
@@ -17,23 +16,23 @@ TITLE="--title="
 TEXT="--text="
 FILESELECT="--file-selection --filename=/etc/apt/sources.list.d/sparky-testing.list"
 TITLETEXT="Select a file of the repository list you would like to edit"
-if [ -f /opt/sparky/sparky-editor ]; then
-. /opt/sparky/sparky-editor
+if [ -f /usr/bin/sparky-editor ]; then
+	SPARKYEDITOR="sparky-editor"
 else
-SPARKYEDITOR="gnome-text-editor"
+	SPARKYEDITOR="gnome-text-editor"
 fi
-
 
 EDITFILE=`$DIALOGMENU $TITLE"$TITLETEXT" $FILESELECT`
 
 if [ "$?" != "0" ]; then
 
-exit 1
+	exit 0
 
 else
 
-$SPARKYEDITOR $EDITFILE
-
-/opt/tray/sparky-tray-edit
+	$SPARKYEDITOR $EDITFILE
+	/opt/tray/sparky-tray-edit
 
 fi
+
+exit 0

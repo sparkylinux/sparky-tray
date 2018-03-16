@@ -2,24 +2,23 @@
 
 #  Sparky Repository Editor lets you edit repository lists
 #  Created by Paweł "pavroo" Pijanowski 2014/05/22
-#  Copyright 2014, 2015 under the GNU GPL2 License
-#  Last update 2015/02/28
+#  Copyright 2014-2018 under the GNU GPL2 License
+#  Last update 2018/03/16
 
 testroot="`whoami`"
-
 if [ "$testroot" != "root" ]; then
-    echo "Must be root"
-    exit 1
+	echo "Must be root...Exiting..."
+	exit 1
 fi
 
-if [ -f /opt/sparky/sparky-xterm ]; then
-. /opt/sparky/sparky-xterm
+if [ -f /usr/bin/sparky-terminal ]; then
+	SPARKYXTERM="sparky-terminal"
 else
-SPARKYXTERM="x-terminal-emulator"
+	SPARKYXTERM="x-terminal-emulator"
 fi
 
 $SPARKYXTERM
 
-exit 1
+exit 0
 
 
