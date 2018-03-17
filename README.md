@@ -18,10 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Dependencies:
 -------------
+gksu
 sparky-apt
 sparky-aptus
 sparky-editor
-sparky-remsu
 sparky-xterm
 synaptic
 yad
