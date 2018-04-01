@@ -20,10 +20,10 @@ if [ "$1" = "uninstall" ]; then
 	rm -f /opt/tray/sparky-tray
 	rm -f /opt/tray/sparky-tray-edit
 	rm -f /opt/tray/sparky-tray-edit-main
-	rm -f /opt/tray/sparky-terminal
+	#rm -f /opt/tray/sparky-terminal
 else
 	cp etc/* /etc/xdg/autostart/
-	if [ ! -d /opt/tray }; then
+	if [ ! -d /opt/tray ]; then
 		mkdir -p /opt/tray
 	fi
 	cp opt/* /opt/tray/

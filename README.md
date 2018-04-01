@@ -18,11 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Dependencies:
 -------------
-gksu
+menu
 sparky-apt
 sparky-aptus
 sparky-editor
-sparky-xterm
+sparky-remsu
+x-terminal-emulator
 synaptic
 yad
 zenity
