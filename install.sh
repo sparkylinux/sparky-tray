@@ -16,16 +16,14 @@
 
 if [ "$1" = "uninstall" ]; then
 	rm -f /etc/xdg/autostart/sparky-tray.desktop
-	rm -f /opt/tray/sparky-menu
-	rm -f /opt/tray/sparky-tray
+	rm -f /usr/bin/sparky-tray
 	rm -f /opt/tray/sparky-tray-edit
 	rm -f /opt/tray/sparky-tray-edit-main
-	#rm -f /opt/tray/sparky-terminal
 else
-	cp etc/* /etc/xdg/autostart/
 	if [ ! -d /opt/tray ]; then
 		mkdir -p /opt/tray
 	fi
 	cp opt/* /opt/tray/
-	sh /opt/tray/sparky-tray /opt/tray/sparky-menu
+	cp bin/* /usr/bin/
+	cp etc/* /etc/xdg/autostart/
 fi

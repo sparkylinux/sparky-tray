@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# deps: yad, sparky-remsu, sparky-aptus-appcenter, synaptic, sparky-editor, sparky-su
+# su-to-root -X -c (menu) replaced by spsudo
+
+if [ -f /usr/bin/sparky-aptus-appcenter ]; then
+	APTUS="sparky-aptus-appcenter"
+else
+	APTUS="sparky-aptus"
+fi
+MENU_ITEMS="APTus! remsu "$APTUS"|Synaptic package manager! synaptic-pkexec|Edit main repository! spsudo /opt/tray/sparky-tray-edit-main|Edit custom repository! spsudo /opt/tray/sparky-tray-edit|Root terminal! spsudo x-terminal-emulator"
+TRAY_ICON="system-software-install"
+POPUP_TEXT="Package Management"
+PIPE_FIFO=$(mktemp -u /tmp/menutray.XXXXXXXX)
+mkfifo $PIPE_FIFO
+exec 3<> $PIPE_FIFO
+
+GUI=$(yad --notification --kill-parent --listen \
+--image="$TRAY_ICON" \
+--text="$POPUP_TEXT" \
+--command="bash -c LEFT_CLICK" <&3 ) &
+
+echo "menu:$MENU_ITEMS" >&3
+
+exit 0

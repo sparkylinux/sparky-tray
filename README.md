@@ -1,7 +1,7 @@
 Sparky Tray
 This tool gives quick access to Sparky APTus, Synaptic, repository editor and root terminal via the panel tray icon
 
-Copyright (C) 2014-2018 Paweł Pijanowski
+Copyright (C) 2014-2024 Paweł Pijanowski
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,11 +18,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Dependencies:
 -------------
-menu
 sparky-apt
-sparky-aptus
+sparky-aptus-appcenter|sparky-aptus
 sparky-editor
 sparky-remsu
+sparky-su
 x-terminal-emulator
 synaptic
 yad

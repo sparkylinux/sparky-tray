@@ -1,5 +1,0 @@
-APTus! remsu sparky-aptus
-Synaptic package manager! synaptic-pkexec
-Edit main repository! su-to-root -X -c /opt/tray/sparky-tray-edit-main
-Edit custom repository! su-to-root -X -c /opt/tray/sparky-tray-edit
-Root terminal! su-to-root -X -c x-terminal-emulator
